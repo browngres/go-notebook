@@ -22,7 +22,7 @@
     输出结果:    c    b    a    panic: runtime error: integer divide by zero
     ```
 
--   延迟调用参数在注册时求值或复制，可用指针或闭包 "延迟" 读取。
+-   defer调用参数在注册时求值或复制，可用指针或闭包 "延迟" 读取。
 
     ```go
     func test() {

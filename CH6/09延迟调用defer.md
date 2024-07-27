@@ -17,7 +17,16 @@
 2. 锁资源释放
 3. 数据库连接释放
 
-defer 功能强大，对于资源管理非常方便，但是如果没用好，也会有陷阱。defer 是先进后出。这个很自然,后面的语句会依赖前面的资源，因此如果先前面的资源先释放了，后面的语句就没法执行了。
+```go
+func test(){
+    //关闭文件，数据库同理
+    file = openFile(xxx)
+    defer file.Close()
+}
+```
+
+
+defer 功能强大，对于资源管理非常方便，但是如果没用好，也会有陷阱。遇到 defer，会把后面的语句压入栈中，先进后出。这个很自然，后面的语句会依赖前面的资源，因此如果先前面的资源先释放了，后面的语句就没法执行了。
 
 ```go
 func main() {
@@ -42,10 +51,11 @@ func main() {
 // 输出结果：    4    4    4    4    4
 ```
 
-> Each time a "defer" statement executes, the function value and parameters to the call are evaluated as usualand saved anew but the actual function is not invoked.
+> Each time a "defer" statement executes, the function value and parameters to the call are evaluated as usual and saved anew but the actual function is not invoked.
 > 每次执行“defer”语句时，函数值和调用的参数都会像往常一样进行计算并重新保存，但实际的函数不会被调用。
 
 也就是说函数正常执行，由于闭包用到的变量 i 在执行的时候已经变成 4，所以输出全都是 4。
+值被计算和 defer 一并压栈保存
 
 ## defer close
 
