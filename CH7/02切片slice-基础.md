@@ -8,9 +8,11 @@ slice 并不是数组或数组指针。它通过内部指针和相关属性引�
 -   切片的长度可以改变。
 -   切片遍历方式和数组一样，可以用 `len()` 求长度。表示可用元素数量，读写操作不能超过该限制。
 -   cap 可以求出 slice 最大扩张容量，不能超出数组限制。`0 <= len(slice) <= len(array)`，其中 array 是 slice 引用的数组。
+-   总是有 len(s) <= cap(s)
 -   切片的定义：`var 变量名 []类型`，比如 `var str []string`、`var arr []int`。
 -   如果 `slice == nil`，那么 len、cap 结果都等于 0。
 -   左闭右开，和 Python 语言索引一样
+-   同样可以使用 for-range 遍历
 
 ```go
 func main() {
