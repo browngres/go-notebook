@@ -79,6 +79,7 @@ slice  := make([]type, len, cap)
 ![切片的内存布局](https://www.topgoer.com/static/3.8/2.jpg)
 
 -   可用指针直接访问底层数组，退化成普通数组操作。
+-   make 创建的切片对应的数组是由 make 底层维护，对外不可见，即只能通过 slice 访问各个元素.
 
 ```go
 s := []int{0, 1, 2, 3}
