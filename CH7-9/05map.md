@@ -87,7 +87,9 @@ for _, key := range keys {
 使用内建函数 delete 从 map 中删除一组键值对：`delete(map, key)`
 `delete(scoreMap, "小明")//将小明:100从map中删除`
 如果 key 不存在，不操作也不报错。
-删除所有 key：遍历使用 delete。或者直接 make 一个新的，让原来的成为垃圾，被 gc 回收
+删除所有 key：遍历使用 delete。或者直接 make 一个同名新的，让原来的成为垃圾，被 gc 回收
+`func clear[T ~[]Type | ~map[Type]Type1](t T)` added in go1.21.0
+清空 map 或者 slice
 
 ## 元素为 map 类型的切片
 
