@@ -7,7 +7,7 @@ import (
 
 // 定义结构体
 type Person struct {
-	Id   int
+	Id   int `json:"id" db:"pk"`
 	Name string
 	Age  int
 }
@@ -44,6 +44,11 @@ func Struct_reflect1(o interface{}) {
 		val := v.Field(i).Interface()
 		fmt.Println("字段值:", val)
 	}
+	// 获取字段id的 tag
+	f_id := t.Field(0)
+	fmt.Println("id Tag json: ", f_id.Tag.Get("json"))
+	fmt.Println("id Tag db", f_id.Tag.Get("db"))
+
 	fmt.Println("============方法============")
 	for i := 0; i < t.NumMethod(); i++ {
 		m := t.Method(i)
@@ -94,4 +99,5 @@ func main() {
 
 	fmt.Println("============调用方法============")
 	Struct_reflect4(s1)
+
 }
