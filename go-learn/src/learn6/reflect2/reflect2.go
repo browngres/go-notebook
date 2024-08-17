@@ -42,6 +42,9 @@ func Struct_reflect1(o interface{}) {
 		// 获取字段的值信息
 		// Interface()：获取字段对应的值
 		val := v.Field(i).Interface()
+		// 此时已经是 any 类型，如果相当于变量可以使用。
+		// 如需将 any 转换为具体类型如 int，应该使用类型断言：val.(int)。
+		// 这里可以省略该步骤，因为Println可以接受 any 类型
 		fmt.Println("字段值:", val)
 	}
 	// 获取字段id的 tag
