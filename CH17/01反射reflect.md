@@ -92,6 +92,19 @@ func main() {
 }
 ```
 
+## 反射操作结构体
+
+详见代码
+可以获取所有属性，i 是顺序。 `f := t.Field(i)`
+获取结构体字段个数：`t.NumField()`
+获取字段的值信息： `v.Field(i).Interface()`
+获取方法：`t.Method(i)` `fmt.Println(m.Name)` `fmt.Println(m.Type)`
+可以查看匿名字段
+修改结构体值：`f := v.FieldByName("Name")` `f.SetString("123")`
+获取方法：`m := v.MethodByName("Hello")`
+构建参数并调用方法：`args := []reflect.Value{reflect.ValueOf("6666")}` ` m.Call(args)`
+获取字段的 tag：`f.Tag.Get("json")`
+
 ### 应用场景：编写程序框架
 
 （类似于 django 的 dispatch 函数）
