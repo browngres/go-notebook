@@ -3,8 +3,10 @@
 尚硅谷 go 学习笔记本
 
 Start 2024-07-09
-B 站视频 BV1ME411Y71o
-韩顺平老师
+
+韩顺平老师 [B 站视频 BV1ME411Y71o](https://www.bilibili.com/video/BV1ME411Y71o)
+
+结合这个教程 [topgoer](https://www.topgoer.com/)
 
 后面的课程有带一个实时通讯项目，最后还专门教了数据结构。
 
