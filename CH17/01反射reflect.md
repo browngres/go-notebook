@@ -27,7 +27,7 @@
 也就是说可以通过一个变量拿到很多东西，而这些东西不仅提供了大量方法，还可以互相转化。
 比如 Value 的 `func (v Value) NumField() int` 方法就可以拿到结构体有多少个字段。
 拿到的东西甚至可以操作原来的变量。
-Kind 代表 Type 的具体类型
+Kind 代表 Type 的宏观类型。例如 获取到的 Type 是名为 Student 的结构体，则 Kind 就是 struct。
 [`type Kind`](https://pkg.go.dev/reflect@go1.22.6#Kind)
 
 ```go
@@ -59,8 +59,8 @@ func reflect_value(a interface{}) {
 }
 
 func main() {
-   var x float64 = 3.4
-   reflect_type(x)
+    var x float64 = 3.4
+    reflect_type(x)
     reflect_value(x)
 }
 ```
@@ -91,6 +91,8 @@ func main() {
     fmt.Println("main:", x)
 }
 ```
+
+通过反射修改变量, 注意当使用 SetXxx 方法来设置，需要通过对应的指针类型来完成, 同时需要使用到 `Value.Elem()`方法。
 
 ## 反射操作结构体
 
