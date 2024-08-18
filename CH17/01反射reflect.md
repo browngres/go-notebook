@@ -21,7 +21,7 @@
 
 获取类型信息：`reflect.TypeOf`，是静态的
 获取值信息：`reflect.ValueOf`，是动态的
-
+Type 和 Value 可以理解为 python 中的 class 以及 class 实例化之后的实例。
 [`type Type` 全部方法](https://pkg.go.dev/reflect@go1.22.6#Type)
 [`type Value` 全部方法](https://pkg.go.dev/reflect@go1.22.6#Value)
 也就是说可以通过一个变量拿到很多东西，而这些东西不仅提供了大量方法，还可以互相转化。
@@ -107,6 +107,7 @@ func main() {
 构建参数并调用方法：`args := []reflect.Value{reflect.ValueOf("6666")}` ` m.Call(args)`
 获取字段的 tag：`f.Tag.Get("json")`
 
+甚至可以用反射创建结构体。`reflect.New()`
 ### 应用场景：编写程序框架
 
 （类似于 django 的 dispatch 函数）
@@ -114,7 +115,13 @@ func main() {
 
 ```go
 bridge := func(call interface{}, args ...interface{}) {
-    //处理内容
+    n = len(args)
+    inValue = make([]reflect.Value,n)
+    for i :=0; i<n;i++{
+        inValue[i] = reflect.ValueOf(args[i])
+    }
+    function = reflect.ValueOf(call)
+    function.Call(inValue)
 }
 bridge(test1,1,2)  // 实现调用test1
 bridge(test2,1,2,"abc")  // 实现调用test2
