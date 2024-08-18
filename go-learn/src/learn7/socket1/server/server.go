@@ -13,7 +13,7 @@ func process(conn net.Conn) {
 		//创建一个新的切片
 		buf := make([]byte, 1024)
 		//1. 等待客户端通过 conn 发送信息
-		//2. 如果客户端没有 wrtie[发送]，那么协程就阻塞在这里
+		//2. 如果客户端没有 write[发送]，那么协程就阻塞在这里
 		fmt.Printf("服务器在等待客户端%s 发送信息\n", conn.RemoteAddr().String())
 		n, err := conn.Read(buf) //从 conn 读取
 		if err != nil {
@@ -21,7 +21,7 @@ func process(conn net.Conn) {
 			return
 		}
 		//3. 显示客户端发送的内容到服务器的终端
-		fmt.Print(string(buf[:n]))
+		fmt.Println("收到client的数据：", string(buf[:n]))
 	}
 }
 
@@ -36,9 +36,11 @@ func ServerListen(ip_port string) {
 	// 循环等待客户端连接
 	for {
 		fmt.Println("监听成功，等待客户端....")
+		// 建立连接
 		conn, err := listen.Accept()
 		if err != nil {
 			fmt.Println("Accept()失败 err=", err)
+			continue
 		} else {
 			fmt.Printf("Accept()成功 con=%v 客户端 ip=%v\n", conn, conn.RemoteAddr().String())
 		}
