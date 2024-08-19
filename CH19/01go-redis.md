@@ -9,6 +9,7 @@ Redis 教程见以前的笔记
 `go get github.com/redis/go-redis/v9`
 [go-redis 指南](https://redis.uptrace.dev/guide/)
 [package 文档](https://pkg.go.dev/github.com/redis/go-redis/v9)
+所有的 redis 命令都做成了 Client 的方法，连接上之后，直接调用即可。
 
 连接方法：
 
@@ -20,3 +21,5 @@ rdb := redis.NewClient(&redis.Options{
     Protocol: 3, // specify 2 for RESP 2 or 3 for RESP 3
 })
 ```
+
+五大数据类型—— string, hash, list, set, zset
